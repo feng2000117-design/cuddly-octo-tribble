@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calorie Eater</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Login Scene -->
+    <div id="login-scene">
+        <div class="login-content">
+            <h1>칼로리 이터</h1>
+            <p>먹고 쓰러지지 마세요! 드래그하여 음식을 먹여보세요.</p>
+            <button id="start-btn">지금 시작하기</button>
+        </div>
+    </div>
+
+    <div id="game-scene" class="hidden">
+        <!-- New floating elements for game -->
+        <div id="quick-calorie-counter">0 <span>kcal</span></div>
+        <!-- Liquid Background Fusion -->
+        <div id="liquid-bubble-container">
+            <div id="bubble-green" class="bubble"></div>
+            <div id="bubble-yellow" class="bubble"></div>
+            <div id="bubble-red" class="bubble"></div>
+        </div>
+
+        <button id="go-to-brain" class="nav-btn">머리</button>
+        
+        <div id="mouth" class="draggable">입</div>
+        <div id="food-container"></div>
+        
+        <div class="scroll-indicator">Scroll down to see your results ↓</div>
+        
+        <!-- Flash effect overlay -->
+        <div id="flash-overlay"></div>
+    </div>
+    
+    <div id="results-scene">
+        <h2>Today's Calorie Intake</h2>
+        <div id="calorie-count">0 <span class="unit">kcal</span></div>
+        <div id="eaten-list-container">
+            <h3>Foods eaten:</h3>
+            <div id="eaten-list">No food eaten yet.</div>
+        </div>
+        
+        <div class="analysis-layout">
+            <!-- Left Bars (Macros) -->
+            <div id="left-bars" class="bars-container">
+                <h3>주요 영양소 (Macros)</h3>
+                <!-- Injected via JS -->
+            </div>
+
+            <!-- Body Area -->
+            <div id="body-container">
+                <svg id="obese-shape" viewBox="-50 0 300 400" overflow="visible" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="fatGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stop-color="#ff4b2b" />
+                            <stop offset="100%" stop-color="#ff416c" />
+                        </linearGradient>
+                        <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+                            <feGaussianBlur stdDeviation="5" result="blur" />
+                            <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                        </filter>
+                    </defs>
+                    <g id="body-group">
+                        <circle id="head" cx="100" cy="50" r="25" fill="#444" />
+                        <path id="arms" d="M70,120 L30,180 M130,120 L170,180" stroke="#444" stroke-width="15" stroke-linecap="round" fill="none"/>
+                        <path id="legs" d="M85,250 L85,350 M115,250 L115,350" stroke="#444" stroke-width="15" stroke-linecap="round" fill="none"/>
+                        <ellipse id="torso" cx="100" cy="180" rx="30" ry="80" fill="#444" />
+                    </g>
+                </svg>
+                <div id="disease-container"></div>
+                <div class="critical-warning hidden">🚨 심장마비 위험! 신체 기능 정지! 🚨</div>
+            </div>
+
+            <!-- Right Bars (Micros) -->
+            <div id="right-bars" class="bars-container">
+                <h3>미량 영양소 (Micros)</h3>
+                <!-- Injected via JS -->
+            </div>
+        </div>
+
+        <div id="deficiency-analysis">
+            <!-- Deficiencies text injected here -->
+        </div>
+    </div>
+    
+    <!-- Brain Scene -->
+    <div id="brain-scene" class="hidden">
+        <button id="back-to-mouth" class="nav-btn">입</button>
+        <div class="brain-content">
+            <h2 class="brain-title">Add Custom Calories</h2>
+            <div class="input-group">
+                <input type="text" id="custom-food-name" placeholder="Food Name (e.g. Smoothie)">
+                <input type="number" id="custom-food-kcal" placeholder="Calories (kcal)">
+            </div>
+            <button id="eat-custom-food" class="confirm-btn mouth-icon">입</button>
+            <div id="custom-eat-msg"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
